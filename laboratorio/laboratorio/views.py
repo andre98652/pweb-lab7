@@ -1,15 +1,16 @@
 from django.http import HttpResponse
 from django.views.generic import View
-
+from django.template.loader import get_template
 from laboratorio.utils import render_to_pdf #created in step 4
 
 class GeneratePdf(View):
     def get(self, request, *args, **kwargs):
-        data = {
-             'today': datetime.date.today(), 
-             'amount': 39.99,
-            'customer_name': 'Cooper Mann',
-            'order_id': 1233434,
+        template = get_template('pdf/invoice.html')
+        context ={
+            "invoice_id" : 123,
+            "customer_name" : "Andre DElgado",
+            "amount" : 1399.99,
+            "today" : "hoy",
         }
-        pdf = render_to_pdf('pdf/invoice.html', data)
-        return HttpResponse(pdf, content_type='application/pdf')
+        html = template.render(context)
+        return HttpResponse(html)
