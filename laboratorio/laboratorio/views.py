@@ -13,4 +13,5 @@ class GeneratePdf(View):
             "today" : "hoy",
         }
         html = template.render(context)
-        return HttpResponse(html)
+        pdf = render_to_pdf('pdf/invoice.html',context)
+        return HttpResponse(pdf, content_type='application/pdf')
