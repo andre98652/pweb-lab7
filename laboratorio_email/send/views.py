@@ -5,6 +5,6 @@ def index(request):
     send_mail('Hola esto es una prueba',
               'Hola esto es una mensaje automatico.',
               'chullachaqui875410@hotmail.com',
-              ['woyaxa6596@nasskar.com'],
+              ['recijix645@kameili.com'],
               fail_silently=False)
     return render(request, 'send/index.html')
